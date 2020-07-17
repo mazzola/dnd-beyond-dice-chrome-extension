@@ -3,6 +3,7 @@
     "version": "1.0",
     "description": "A Chrome Extension that listens for dice rolls on D&D Beyond Character Sheets and posts the results into a Discord server via a bot.",
     "manifest_version": 2,
+    "permissions": ["storage"],
     "content_scripts": [
       {
         "matches": [
@@ -10,5 +11,6 @@
         ],
         "js": ["content.js"]
       }
-    ]
+    ],
+    "options_page": "options.html"
   }
