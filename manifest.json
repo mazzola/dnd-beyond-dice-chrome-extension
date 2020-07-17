@@ -12,5 +12,19 @@
         "js": ["content.js"]
       }
     ],
-    "options_page": "options.html"
+    "options_page": "options.html",
+	"page_action": {
+      "default_icon": {
+        "16": "images/d20.png",
+        "32": "images/d20@2x.png",
+        "48": "images/d20@3x.png",
+        "128": "images/d20@8x.png"
+      }
+    },
+    "icons": {
+       "16": "images/d20.png",
+       "32": "images/d20@2x.png",
+       "48": "images/d20@3x.png",
+       "128": "images/d20@8x.png"
+    }
   }
