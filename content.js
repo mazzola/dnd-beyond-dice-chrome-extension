@@ -29,7 +29,7 @@ function sendMessageToDiscordChannel(diceResult) {
 		"embeds": [{
 			"title": createMessageTitle(),
 			"description": createMessageDescription(diceResult),
-			"color": 12923185,
+			"color": createMessageColor(),
 			"thumbnail": createMessageThumbnail(),
 			"footer": createMessageFooter()
 		}]
@@ -48,6 +48,13 @@ function createMessageDescription(diceResult) {
 	let diceBreakdowns = document.body.querySelectorAll(".dice_result__info__breakdown")
 	let latestDiceBreakdown = last(diceBreakdowns).innerText
 	return `${latestDiceBreakdown} = \`${diceResult}\``
+}
+
+function createMessageColor() {
+	let diceRollTypes = document.body.querySelectorAll(".dice_result__rolltype")
+	let latestDiceRollType = last(diceRollTypes)
+	let rgbColor = getComputedStyle(latestDiceRollType).color.slice(4, -1).split(", ")
+	return rgbToDecimal(rgbColor[0], rgbColor[1], rgbColor[2])
 }
 
 function createMessageThumbnail() {
@@ -71,4 +78,8 @@ function last(nodeList) {
 
 function capitalize(words) {
 	return words.replace(/\w\S*/g, word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+}
+
+function rgbToDecimal(red, green, blue) {
+	return parseInt(red << 16) + parseInt(green << 8) + parseInt(blue)
 }
