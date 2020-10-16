@@ -8,14 +8,14 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/mikemfleming/dnd-beyond-dice-chrome-extension.git"
+        "url": "git+https://github.com/mazzola/dnd-beyond-dice-chrome-extension.git"
     },
     "author": "",
-    "license": "ISC",
+    "license": "MIT",
     "bugs": {
-        "url": "https://github.com/mikemfleming/dnd-beyond-dice-chrome-extension/issues"
+        "url": "https://github.com/mazzola/dnd-beyond-dice-chrome-extension/issues"
     },
-    "homepage": "https://github.com/mikemfleming/dnd-beyond-dice-chrome-extension#readme",
+    "homepage": "https://github.com/mazzola/dnd-beyond-dice-chrome-extension#readme",
     "devDependencies": {
         "husky": "^4.3.0",
         "lint-staged": "^10.4.0",
