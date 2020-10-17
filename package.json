@@ -4,7 +4,7 @@
     "description": "A Chrome Extension that listens for dice rolls on D&D Beyond Character Sheets (e.g. [Remigius](https://www.dndbeyond.com/profile/kamnikite/characters/23934295)) and posts the results into a Discord server via a bot.",
     "main": "content.js",
     "scripts": {
-        "dev:options": "parcel options.html --hmr-port 8080"
+        "dev:options": "parcel watch options/index.html --public-url /build_output --out-dir ./build_output --out-file options.html --hmr-port 8080"
     },
     "repository": {
         "type": "git",
@@ -29,5 +29,9 @@
     },
     "lint-staged": {
         "*.{js,css,md}": "prettier --write"
+    },
+    "dependencies": {
+        "react": "^16.14.0",
+        "react-dom": "^16.14.0"
     }
 }

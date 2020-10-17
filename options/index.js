@@ -1,3 +1,8 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+
+ReactDOM.render(<h1>Hello!</h1>, document.getElementById('root'))
+
 chrome.management.getSelf((self) => {
     if (self.installType === 'development') {
         const hmrConnection = new WebSocket('ws://localhost:8080')
@@ -7,6 +12,7 @@ chrome.management.getSelf((self) => {
 })
 
 const webhookUrlField = document.getElementById('webhookUrlField')
+
 chrome.storage.sync.get('webhookUrl', (data) => setWebhookInputField(data))
 document.getElementById('saveButton').addEventListener('click', storeWebhookUrl)
 
