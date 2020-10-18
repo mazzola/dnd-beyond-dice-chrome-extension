@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 
-import '../common/hot-reload'
+import './common/hot-reload'
 
 const Options = () => {
     const [webhookUrl, setWebhookUrl] = useState('')
