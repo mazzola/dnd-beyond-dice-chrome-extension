@@ -2,10 +2,11 @@ import React, { useState, useEffect, useReducer } from 'react'
 import ReactDOM from 'react-dom'
 import { useForm, useField } from 'react-form'
 
+import './index.scss'
+
 const initialState = {
     characters: [],
 }
-
 const ADD_CHARACTER = 'add_character'
 const LOAD_CHARACTERS = 'load_characters'
 
@@ -64,7 +65,7 @@ const Options = () => {
     }, [])
 
     return (
-        <>
+        <div className="options">
             <pre>{JSON.stringify(state, null, 4)}</pre>
             <Form>
                 {state.characters.map(({ ddbUrl, discordUrl }, i) => {
@@ -90,7 +91,7 @@ const Options = () => {
                 <br />
                 <button type="submit">Save</button>
             </Form>
-        </>
+        </div>
     )
 }
 
@@ -109,7 +110,7 @@ function Input({
 
     return (
         <>
-            <label>{fieldName}</label>
+            <label className="mike">{fieldName}</label>
             <input type={inputType} {...getInputProps()} />
         </>
     )
