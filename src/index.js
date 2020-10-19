@@ -9,8 +9,11 @@ const initialState = {
 }
 const ADD_CHARACTER = 'add_character'
 const LOAD_CHARACTERS = 'load_characters'
+const SAVE_CHARACTERS = 'save_characters'
 
-// TODO: add functionality for all action types
+// TODO:
+//  - add functionality for all action types
+//  - consider saving/loading characters as a subset of dicebot options
 const reducer = (state, action) => {
     console.log('in reducer....', action)
     switch (action.type) {
@@ -31,7 +34,14 @@ const reducer = (state, action) => {
                 ...state,
                 characters: action.payload,
             }
-        case 'save_characters':
+        case SAVE_CHARACTERS:
+            // anti pattern to do this here?
+            chrome.storage.sync.set({
+                diceBot: {
+                    characters: action.payload.characters,
+                },
+            })
+
             return state
         default:
             throw new Error(`Action type ${action.type} not supported`)
@@ -68,10 +78,9 @@ const Options = () => {
         onSubmit: (values, instance) => {
             const { characters } = values
 
-            console.log('submitting...', values)
-
-            chrome.storage.sync.set({
-                diceBot: { characters },
+            dispatch({
+                type: SAVE_CHARACTERS,
+                payload: { characters },
             })
         },
     })
