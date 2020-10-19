@@ -10,6 +10,7 @@ const initialState = {
 const ADD_CHARACTER = 'add_character'
 const LOAD_CHARACTERS = 'load_characters'
 
+// TODO: add functionality for all action types
 const reducer = (state, action) => {
     console.log('in reducer....', action)
     switch (action.type) {
@@ -35,6 +36,26 @@ const reducer = (state, action) => {
         default:
             throw new Error(`Action type ${action.type} not supported`)
     }
+}
+
+const Input = ({
+    scope,
+    fieldName,
+    defaultValue = '',
+    index,
+    inputType = 'url',
+}) => {
+    const { getInputProps } = useField(`${scope}[${index}].${fieldName}`, {
+        defaultValue,
+    })
+
+    return (
+        <div className="dicebot-options__character--input">
+            <label>{fieldName}</label>
+            <br />
+            <input type={inputType} {...getInputProps()} />
+        </div>
+    )
 }
 
 const Options = () => {
@@ -65,12 +86,13 @@ const Options = () => {
     }, [])
 
     return (
-        <div className="options">
+        <div className="dicebot-options">
+            <strong>Current State</strong>
             <pre>{JSON.stringify(state, null, 4)}</pre>
             <Form>
                 {state.characters.map(({ ddbUrl, discordUrl }, i) => {
                     return (
-                        <>
+                        <div className="dicebot-options__character">
                             <Input
                                 scope="characters"
                                 fieldName="ddbUrl"
@@ -83,12 +105,10 @@ const Options = () => {
                                 index={i}
                                 defaultValue={discordUrl}
                             />
-                        </>
+                        </div>
                     )
                 })}
-                <br />
                 <button onClick={handleAddCharacter}>Add a Character</button>
-                <br />
                 <button type="submit">Save</button>
             </Form>
         </div>
@@ -96,22 +116,3 @@ const Options = () => {
 }
 
 ReactDOM.render(<Options />, document.getElementById('root'))
-
-function Input({
-    scope,
-    fieldName,
-    defaultValue = '',
-    index,
-    inputType = 'url',
-}) {
-    const { getInputProps } = useField(`${scope}[${index}].${fieldName}`, {
-        defaultValue,
-    })
-
-    return (
-        <>
-            <label className="mike">{fieldName}</label>
-            <input type={inputType} {...getInputProps()} />
-        </>
-    )
-}
