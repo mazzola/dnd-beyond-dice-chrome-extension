@@ -1,16 +1,12 @@
+body {
+  background-color: olive;
+}
+
 .dicebot-options {
   width: 80%;
   margin: 0 auto;
   
   pre {
     background-color: lightgray;
-  }
-
-  &__character-container {
-    
-
-    &--input {
-      width: 50%;
-    }
   }
 }

@@ -2,6 +2,7 @@ import {
     ADD_CHARACTER,
     LOAD_CHARACTERS,
     SAVE_CHARACTERS,
+    SAVE_CHARACTER,
 } from './options.actions'
 
 export const optionsInitialState = {
@@ -29,6 +30,8 @@ export const optionsReducer = (state, action) => {
                 ...state,
                 characters: action.payload,
             }
+        case SAVE_CHARACTER:
+            return state
         case SAVE_CHARACTERS:
             // filter out blank characters before saving
             const characters = action.payload.characters.filter(

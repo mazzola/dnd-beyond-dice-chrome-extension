@@ -39,28 +39,11 @@ const Options = () => {
     return (
         <div className="dicebot-options">
             <h1>Tabletop Sagas Dice Roller</h1>
-            <Form onSubmit={handleSubmit}>
-                {state.characters.map(({ ddbUrl, discordUrl }, i) => {
-                    return (
-                        <div className="dicebot-options__character-container">
-                            <Input
-                                scope="characters"
-                                fieldName="ddbUrl"
-                                index={i}
-                                defaultValue={ddbUrl}
-                            />
-                            <Input
-                                scope="characters"
-                                fieldName="discordUrl"
-                                index={i}
-                                defaultValue={discordUrl}
-                            />
-                        </div>
-                    )
-                })}
-                <Button onClick={handleAddCharacter}>Add a Character</Button>
-                <Button type="submit">Save</Button>
-            </Form>
+            {state.characters.map((c) => (
+                <Form character={c} />
+            ))}
+            {/* <Button onClick={handleAddCharacter}>Add a Character</Button>
+                <Button type="submit">Save</Button> */}
             {/* Purely for debugging in development */}
             {/* <strong>Current State</strong>
             <pre>{JSON.stringify(state, null, 4)}</pre> */}
