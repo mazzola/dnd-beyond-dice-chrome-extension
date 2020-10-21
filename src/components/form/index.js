@@ -4,16 +4,19 @@ import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
+import Box from '@material-ui/core/Box'
 
 import Input from '../input'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        marginBottom: '10px',
-        '& .MuiTextField-root': {
-            margin: theme.spacing(1),
-            width: '25ch',
+        '& .MuiCardContent-root': {
+            paddingLeft: 0,
         },
+        marginBottom: '10px',
+        paddingLeft: theme.spacing(2),
+        paddingRight: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
     },
     title: {
         fontSize: 28,
@@ -34,7 +37,11 @@ const Form = ({ character }) => {
         // TODO: write to chrome storage
         console.log('submitting', { ddbUrl, discordUrl })
     }
-    console.log(ddbUrl, discordUrl)
+    const handleDelete = (e) => {
+        // TODO: write to chrome storage
+        alert('deleting')
+    }
+
     return (
         <form onSubmit={handleSubmit}>
             <Card className={classes.root}>
@@ -43,23 +50,26 @@ const Form = ({ character }) => {
                         Rabbit
                     </Typography>
                 </CardContent>
-                <Input
-                    setValue={setDdbUrl}
-                    labelText="D&D Beyond URL"
-                    helperText="Invalid D&D Beyond url"
-                    pattern={patterns.ddb}
-                    fieldName="ddbUrl"
-                    defaultValue={ddbUrl}
-                />
-                <Input
-                    setValue={setDiscordUrl}
-                    labelText="Discord URL"
-                    helperText="Invalid Discord url"
-                    pattern={patterns.discord}
-                    fieldName="discordUrl"
-                    defaultValue={discordUrl}
-                />
+                <Box mb={2}>
+                    <Input
+                        setValue={setDdbUrl}
+                        labelText="D&D Beyond URL"
+                        helperText="Invalid D&D Beyond url"
+                        pattern={patterns.ddb}
+                        fieldName="ddbUrl"
+                        defaultValue={ddbUrl}
+                    />
+                    <Input
+                        setValue={setDiscordUrl}
+                        labelText="Discord URL"
+                        helperText="Invalid Discord url"
+                        pattern={patterns.discord}
+                        fieldName="discordUrl"
+                        defaultValue={discordUrl}
+                    />
+                </Box>
                 <Button type="submit">Save</Button>
+                <Button onClick={handleDelete}>Delete</Button>
             </Card>
         </form>
     )

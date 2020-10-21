@@ -1,6 +1,14 @@
-import React, { useState, useEffect, useReducer } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
 import Options from './components/options'
 
-ReactDOM.render(<Options />, document.getElementById('root'))
+const App = () => (
+    <>
+        <CssBaseline />
+        <Options />
+    </>
+)
+
+ReactDOM.render(<App />, document.getElementById('root'))

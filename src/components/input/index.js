@@ -17,12 +17,12 @@ const Input = ({
 
     return (
         <TextField
+            fullWidth
             defaultValue={defaultValue}
             onChange={handleChange}
             error={!isValid}
             {...(!isValid && { helperText })}
             label={labelText}
-            className="dicebot-options__character-container--input"
         />
     )
 }
