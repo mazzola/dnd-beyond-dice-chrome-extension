@@ -15,7 +15,10 @@ nvm use
 # install your dependencies
 npm i
 
-# more commands to come with react + es6 transpilation
+# start watching the file system for changes
+npm run dev
+
+# TODO: hot reload chrome extension code to make dev loop faster
 ```
 
 After that all you need to do is tell Chrome where this new directory is on your PC.

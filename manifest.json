@@ -10,7 +10,7 @@
             "js": ["content.js"]
         }
     ],
-    "options_page": "options.html",
+    "options_page": "build_output/options.html",
     "page_action": {
         "default_icon": {
             "16": "images/d20.png",
