@@ -1,5 +1,4 @@
 import React, { useReducer, useEffect } from 'react'
-import { useForm } from 'react-form'
 
 import {
     ADD_CHARACTER,
@@ -61,8 +60,8 @@ const Options = () => {
                 <button type="submit">Save</button>
             </Form>
             {/* Purely for debugging in development */}
-            <strong>Current State</strong>
-            <pre>{JSON.stringify(state, null, 4)}</pre>
+            {/* <strong>Current State</strong>
+            <pre>{JSON.stringify(state, null, 4)}</pre> */}
         </div>
     )
 }
