@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect } from 'react'
+import Button from '@material-ui/core/Button'
 
 import {
     ADD_CHARACTER,
@@ -37,10 +38,11 @@ const Options = () => {
 
     return (
         <div className="dicebot-options">
+            <h1>Tabletop Sagas Dice Roller</h1>
             <Form onSubmit={handleSubmit}>
                 {state.characters.map(({ ddbUrl, discordUrl }, i) => {
                     return (
-                        <div className="dicebot-options__character">
+                        <div className="dicebot-options__character-container">
                             <Input
                                 scope="characters"
                                 fieldName="ddbUrl"
@@ -56,8 +58,8 @@ const Options = () => {
                         </div>
                     )
                 })}
-                <button onClick={handleAddCharacter}>Add a Character</button>
-                <button type="submit">Save</button>
+                <Button onClick={handleAddCharacter}>Add a Character</Button>
+                <Button type="submit">Save</Button>
             </Form>
             {/* Purely for debugging in development */}
             {/* <strong>Current State</strong>

@@ -29,7 +29,7 @@ const Input = ({
             {...(!isValid && { helperText })}
             {...getInputProps()}
             label={startCase(fieldName).toUpperCase()}
-            className="dicebot-options__character--input"
+            className="dicebot-options__character-container--input"
         />
     )
 }

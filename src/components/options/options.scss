@@ -6,11 +6,11 @@
     background-color: lightgray;
   }
 
-  &__character {
+  &__character-container {
+    
 
     &--input {
       width: 50%;
-      margin-bottom: 5px;
     }
   }
 }
