@@ -28,7 +28,7 @@ const patterns = {
     ddb: /^https:\/\/www\.dndbeyond\.com\/profile\/(\w|\d)+\/characters\/\d+$/,
 }
 
-const Form = ({ character }) => {
+const Form = ({ character = {}, index, onSubmit }) => {
     const classes = useStyles()
     const [ddbUrl, setDdbUrl] = useState(character.ddbUrl)
     const [discordUrl, setDiscordUrl] = useState(character.discordUrl)
@@ -36,6 +36,13 @@ const Form = ({ character }) => {
         e.preventDefault()
         // TODO: write to chrome storage
         console.log('submitting', { ddbUrl, discordUrl })
+        onSubmit({
+            index,
+            character: {
+                ddbUrl,
+                discordUrl,
+            },
+        })
     }
     const handleDelete = (e) => {
         // TODO: write to chrome storage

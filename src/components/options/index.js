@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useReducer, useEffect } from 'react'
 import Button from '@material-ui/core/Button'
 import AppBar from '@material-ui/core/AppBar'
 import Typography from '@material-ui/core/Typography'
@@ -9,6 +9,13 @@ import Box from '@material-ui/core/Box'
 
 import Input from '../input'
 import Form from '../form'
+import {
+    optionsReducer,
+    initialState,
+    LOAD_OPTIONS,
+    ADD_NEW_CHARACTER,
+    SAVE_CHARACTER,
+} from './options.reducer'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,12 +32,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Options = () => {
     const classes = useStyles()
-    const [state, setState] = useState({})
+    const [state, dispatch] = useReducer(optionsReducer, initialState)
+    const [isAddingNewCharacter, setIsAddingNewCharacter] = useState(false)
 
     useEffect(() => {
-        chrome.storage.sync.get('diceBot', ({ diceBot }) =>
-            setState({ ...state, ...diceBot })
-        )
+        chrome.storage.sync.get(null, ({ diceBot }) => {
+            console.log('loading options from chrome storage...', diceBot)
+            dispatch({ type: LOAD_OPTIONS, payload: diceBot })
+        })
     }, [])
 
     return (
@@ -52,8 +61,20 @@ const Options = () => {
             </div>
             <Box mx="25vw">
                 {state.characters &&
-                    state.characters.map((c) => <Form character={c} />)}
+                    state.characters.map((c, i) => (
+                        <Form
+                            character={c}
+                            index={i}
+                            onSubmit={(payload) =>
+                                dispatch({ type: SAVE_CHARACTER, payload })
+                            }
+                        />
+                    ))}
+                <Button onClick={() => dispatch({ type: ADD_NEW_CHARACTER })}>
+                    Add new character
+                </Button>
                 {/* Purely for debugging in development */}
+                <br />
                 <strong>Current State</strong>
                 <pre>{JSON.stringify(state, null, 4)}</pre>
             </Box>
