@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
@@ -30,12 +30,11 @@ const patterns = {
 
 const Form = ({ character = {}, index, onSubmit, handleRemove }) => {
     const classes = useStyles()
+    const [name, setName] = useState('')
     const [ddbUrl, setDdbUrl] = useState(character.ddbUrl)
     const [discordUrl, setDiscordUrl] = useState(character.discordUrl)
     const handleSubmit = (e) => {
         e.preventDefault()
-        // TODO: write to chrome storage
-        console.log('submitting', { ddbUrl, discordUrl })
         onSubmit({
             index,
             character: {
@@ -44,17 +43,28 @@ const Form = ({ character = {}, index, onSubmit, handleRemove }) => {
             },
         })
     }
-    const handleDelete = (e) => {
-        // TODO: write to chrome storage
-        alert('deleting')
-    }
+
+    useEffect(() => {
+        async function fetchCharacterName() {
+            const htmlString = await fetch(ddbUrl).then((r) => r.text())
+            const htmlDoc = new DOMParser().parseFromString(
+                htmlString,
+                'text/html'
+            )
+            const titleText = htmlDoc.querySelector('title').innerText
+
+            setName(titleText.replace(' - D&D Beyond', ''))
+        }
+
+        fetchCharacterName()
+    }, [])
 
     return (
         <form onSubmit={handleSubmit}>
             <Card className={classes.root}>
                 <CardContent>
                     <Typography className={classes.title} gutterBottom>
-                        Rabbit
+                        {name}
                     </Typography>
                 </CardContent>
                 <Box mb={2}>
