@@ -1,6 +1,7 @@
 export const LOAD_OPTIONS = 'load_options'
 export const ADD_NEW_CHARACTER = 'add_new_character'
 export const SAVE_CHARACTER = 'save_character'
+export const REMOVE_CHARACTER = 'remove_character'
 
 export const initialState = {
     characters: [],
@@ -14,13 +15,15 @@ const emptyCharacter = {
 export const optionsReducer = (state, action) => {
     console.log({ state, action })
     switch (action.type) {
-        case LOAD_OPTIONS:
+        case LOAD_OPTIONS: {
             return action.payload
-        case ADD_NEW_CHARACTER:
+        }
+        case ADD_NEW_CHARACTER: {
             return {
                 characters: [...state.characters, emptyCharacter],
             }
-        case SAVE_CHARACTER:
+        }
+        case SAVE_CHARACTER: {
             const { index, character } = action.payload
             const newState = {
                 ...state,
@@ -31,7 +34,20 @@ export const optionsReducer = (state, action) => {
             chrome.storage.sync.set({ diceBot: newState })
 
             return newState
-        default:
+        }
+        case REMOVE_CHARACTER: {
+            const { index } = action.payload
+            const newState = {
+                ...state,
+                characters: state.characters.filter((_, i) => i !== index),
+            }
+
+            chrome.storage.sync.set({ diceBot: newState })
+
+            return newState
+        }
+        default: {
             throw new Error(`Action ${action.type} not supported`)
+        }
     }
 }

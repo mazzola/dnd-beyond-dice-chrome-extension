@@ -28,7 +28,7 @@ const patterns = {
     ddb: /^https:\/\/www\.dndbeyond\.com\/profile\/(\w|\d)+\/characters\/\d+$/,
 }
 
-const Form = ({ character = {}, index, onSubmit }) => {
+const Form = ({ character = {}, index, onSubmit, handleRemove }) => {
     const classes = useStyles()
     const [ddbUrl, setDdbUrl] = useState(character.ddbUrl)
     const [discordUrl, setDiscordUrl] = useState(character.discordUrl)
@@ -76,7 +76,7 @@ const Form = ({ character = {}, index, onSubmit }) => {
                     />
                 </Box>
                 <Button type="submit">Save</Button>
-                <Button onClick={handleDelete}>Delete</Button>
+                <Button onClick={handleRemove}>Delete</Button>
             </Card>
         </form>
     )

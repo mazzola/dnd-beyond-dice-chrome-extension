@@ -15,6 +15,7 @@ import {
     LOAD_OPTIONS,
     ADD_NEW_CHARACTER,
     SAVE_CHARACTER,
+    REMOVE_CHARACTER,
 } from './options.reducer'
 
 const useStyles = makeStyles((theme) => ({
@@ -68,15 +69,17 @@ const Options = () => {
                             onSubmit={(payload) =>
                                 dispatch({ type: SAVE_CHARACTER, payload })
                             }
+                            handleRemove={() =>
+                                dispatch({
+                                    type: REMOVE_CHARACTER,
+                                    payload: { index: i },
+                                })
+                            }
                         />
                     ))}
                 <Button onClick={() => dispatch({ type: ADD_NEW_CHARACTER })}>
                     Add new character
                 </Button>
-                {/* Purely for debugging in development */}
-                <br />
-                <strong>Current State</strong>
-                <pre>{JSON.stringify(state, null, 4)}</pre>
             </Box>
         </>
     )
