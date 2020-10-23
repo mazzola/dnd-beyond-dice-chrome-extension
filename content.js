@@ -1,5 +1,14 @@
-var webhookUrl
-chrome.storage.sync.get('webhookUrl', (data) => (webhookUrl = data.webhookUrl))
+let webhookUrl = ''
+
+chrome.storage.sync.get('diceBot', ({ diceBot }) => {
+    const { characters } = diceBot
+
+    characters.forEach((c) => {
+        if (character.ddbUrl === window.location.href) {
+            webhookUrl = character.discordUrl
+        }
+    })
+})
 
 MutationObserver = window.MutationObserver || window.WebKitMutationObserver
 

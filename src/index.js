@@ -1,30 +1,24 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import { createMuiTheme } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/styles'
 
-const Options = () => {
-    const [webhookUrl, setWebhookUrl] = useState('')
-    const handleChange = (e) => setWebhookUrl(e.target.value) // TODO: handle url validation
-    const handleClick = (e) => {
-        e.preventDefault()
-        console.log(`Storing: ${webhookUrl}`)
-        chrome.storage.sync.set({ webhookUrl })
-    }
+import Options from './components/options'
 
-    useEffect(() => {
-        chrome.storage.sync.get('webhookUrl', ({ webhookUrl }) =>
-            setWebhookUrl(webhookUrl)
-        )
-    }, [])
+const theme = createMuiTheme({
+    palette: {
+        primary: {
+            main: '#C53131',
+        },
+    },
+})
 
-    return (
-        <form>
-            <label>Discord Webhook URL:</label>
-            <br />
-            <input type="url" onChange={handleChange} value={webhookUrl} />
-            <br />
-            <input type="submit" onClick={handleClick} value="Save" />
-        </form>
-    )
-}
+const App = () => (
+    <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Options />
+    </ThemeProvider>
+)
 
-ReactDOM.render(<Options />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'))
