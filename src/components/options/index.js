@@ -38,7 +38,9 @@ const Options = () => {
     useEffect(() => {
         chrome.storage.sync.get(null, ({ diceBot }) => {
             console.log('loading options from chrome storage...', diceBot)
-            dispatch({ type: LOAD_OPTIONS, payload: diceBot })
+
+            // handles loading from a clean slate vs one that's been initialized by a previous run of the options page
+            dispatch({ type: LOAD_OPTIONS, payload: diceBot || initialState })
         })
     }, [])
 

@@ -45,18 +45,20 @@ const Form = ({ character = {}, index, onSubmit, handleRemove }) => {
     }
 
     useEffect(() => {
-        async function fetchCharacterName() {
-            const htmlString = await fetch(ddbUrl).then((r) => r.text())
-            const htmlDoc = new DOMParser().parseFromString(
-                htmlString,
-                'text/html'
-            )
-            const titleText = htmlDoc.querySelector('title').innerText
+        if (ddbUrl) {
+            async function fetchCharacterName() {
+                const htmlString = await fetch(ddbUrl).then((r) => r.text())
+                const htmlDoc = new DOMParser().parseFromString(
+                    htmlString,
+                    'text/html'
+                )
+                const titleText = htmlDoc.querySelector('title').innerText
 
-            setName(titleText.replace(' - D&D Beyond', ''))
+                setName(titleText.replace(' - D&D Beyond', ''))
+            }
+
+            fetchCharacterName()
         }
-
-        fetchCharacterName()
     }, [])
 
     return (
