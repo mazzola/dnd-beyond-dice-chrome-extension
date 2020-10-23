@@ -34,7 +34,6 @@ const useStyles = makeStyles((theme) => ({
 const Options = () => {
     const classes = useStyles()
     const [state, dispatch] = useReducer(optionsReducer, initialState)
-    const [isAddingNewCharacter, setIsAddingNewCharacter] = useState(false)
 
     useEffect(() => {
         chrome.storage.sync.get(null, ({ diceBot }) => {
@@ -46,7 +45,7 @@ const Options = () => {
     return (
         <>
             <div className={classes.root}>
-                <AppBar position="static">
+                <AppBar color="primary" position="static">
                     <Toolbar>
                         <Typography variant="h6" className={classes.title}>
                             Tabletop Sagas Dice Roller
