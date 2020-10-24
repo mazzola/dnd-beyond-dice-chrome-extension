@@ -3,7 +3,7 @@ let webhookUrl = ''
 chrome.storage.sync.get('diceBot', ({ diceBot }) => {
     const { characters } = diceBot
 
-    characters.forEach((c) => {
+    characters.forEach((character) => {
         if (character.ddbUrl === window.location.href) {
             webhookUrl = character.discordUrl
         }
