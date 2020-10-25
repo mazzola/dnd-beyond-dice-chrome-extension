@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const patterns = {
-    discord: /^https:\/\/discord\.com\/api\/webhooks\//,
+    discord: /^https:\/\/discord(app)*\.com\/api\/webhooks\//,
     ddb: /^https:\/\/www\.dndbeyond\.com\/profile\/(\w|\d)+\/characters\/\d+$/,
 }
 
